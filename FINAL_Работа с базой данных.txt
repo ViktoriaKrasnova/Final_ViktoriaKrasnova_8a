@@ -32,7 +32,7 @@ login | inDeliveryCount
 Если поле inDelivery == true, то вывести статус 1.
 Для остальных случаев вывести 0.
 
-Запрос 1:
+Запрос:
 
 SELECT track, cancelled, finished, "inDelivery" FROM "Orders";
 SELECT track,
@@ -76,7 +76,33 @@ response:
  420467 | status 2
   23623 | status 0
 (8 rows)
+-----------------------------------------------------------------------------------------------------------------------------------------------
+!!! ИСПРАВЛЕННЫЙ ВАРИАНТ РЕШЕНИЯ
 
+
+SELECT track, CASE WHEN finished = true THEN '2' WHEN "inDelivery" = true THEN '1' WHEN cancelled = true THEN '-1' ELSE '0' END FROM "Orders";
+SELECT track,
+       CASE
+           WHEN finished = TRUE THEN '2'
+           WHEN "inDelivery" = TRUE THEN '1'
+           WHEN cancelled = TRUE THEN '-1'
+           ELSE '0'
+       END
+FROM "Orders";
+ track  | case
+--------+------
+ 927680 | 0
+ 228222 | 1
+ 794933 | 1
+ 794933 | 1
+ 959886 | 1
+ 959886 | 1
+ 678102 | 1
+ 678102 | 1
+ 228222 | 2
+ 821072 | -1
+(10 rows)
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 ЗАДАНИЕ 3
 Автоматизация теста к API
