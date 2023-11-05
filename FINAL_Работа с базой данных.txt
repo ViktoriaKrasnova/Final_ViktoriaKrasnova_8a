@@ -6,16 +6,13 @@
 Для этого: вывести список логинов курьеров с количеством их заказов в статусе «В доставке» (поле inDelivery = true). 
 
 Запрос:
-
 SELECT cou.login, COUNT (ord.id) AS "inDeliveryCount" FROM "Couriers" AS cou JOIN "Orders" AS ord ON cou.id = ord."courierId" WHERE ord."inDelivery" = true GROUP BY cou.login;
-
 SELECT cou.login,
        COUNT (ord.id) AS "inDeliveryCount"
 FROM "Couriers" AS cou
 JOIN "Orders" AS ord ON cou.id = ord."courierId"
 WHERE ord."inDelivery" = TRUE
 GROUP BY cou.login;
-
 
 ЗДАНИЕ 2
 Протестировать статусы заказов. Убедиться, что в базе данных они записываются корректно.
@@ -27,7 +24,6 @@ GROUP BY cou.login;
 Для остальных случаев вывести 0.
 
 Запрос:
-
 SELECT track, cancelled, finished, "inDelivery" FROM "Orders";
 SELECT track,
        cancelled,
@@ -35,9 +31,7 @@ SELECT track,
        "inDelivery"
 FROM "Orders";
 
-
 Запрос 2:
-
 SELECT track, CASE WHEN finished = true THEN '2' WHEN "inDelivery" = true THEN '1' WHEN cancelled = true THEN '-1' ELSE '0' END FROM "Orders";
 SELECT track,
        CASE
